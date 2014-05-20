@@ -70,7 +70,6 @@ And dropped the views manually:
     DROP VIEW planet_osm_line_z11 CASCADE;
     DROP VIEW planet_osm_line_z10 CASCADE;
 
-
 Details
 -------
 

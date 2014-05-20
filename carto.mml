@@ -1,0 +1,226 @@
+{
+  "bounds": [
+    -180,
+    -85.0511,
+    180,
+    85.0511
+  ],
+  "center": [
+    -122,
+    37,
+    10
+  ],
+  "format": "png",
+  "interactivity": false,
+  "minzoom": 0,
+  "maxzoom": 22,
+  "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+  "Stylesheet": [
+    "style.mss"
+  ],
+  "Layer": [
+    {
+      "geometry": "polygon",
+      "extent": [
+        -179.9999999999996,
+        -85.051,
+        179.9999999999996,
+        83.66601980000003
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "coastline",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "-20037508.3427892,-20037471.2051371,20037508.3427892,18461046.6925954",
+        "host": "localhost",
+        "dbname": "osm"
+      },
+      "id": "land",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "land"
+    },
+    {
+      "extent": [
+        -124.42168466006774,
+        32.51497177013832,
+        -114.07923814153257,
+        42.08691017281183
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(SELECT way,\n                        name\n                 FROM planet_osm_polygon\n                 WHERE \"natural\" IN ('water', 'bay')\n                    OR waterway IN ('riverbank')\n                 ORDER BY z_order ASC, way_area DESC\n                \n                ) AS water",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "-13850558.58,3831100.13,-12699242.7,5174007.07",
+        "host": "localhost",
+        "dbname": "osm"
+      },
+      "id": "water-bodies",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "water-bodies"
+    },
+    {
+      "extent": [
+        -124.42168466006774,
+        32.51497177013832,
+        -114.07923814153257,
+        42.08691017281183
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(SELECT way FROM planet_osm_polygon WHERE building IS NOT NULL) AS footprints",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "auto",
+        "extent": "-13850558.58,3831100.13,-12699242.7,5174007.07",
+        "host": "localhost",
+        "dbname": "osm"
+      },
+      "id": "buildings",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "buildings"
+    },
+    {
+      "geometry": "unknown",
+      "extent": [
+        -124.40272293121902,
+        32.51426372716727,
+        -114.09350491538036,
+        42.08044818535066
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(SELECT * FROM high_road(!scale_denominator!, !bbox!) WHERE kind='path') AS high_road",
+        "key_field": "",
+        "geometry_field": "way",
+        "extent_cache": "custom",
+        "extent": "-13848447.77,3831006.66,-12700830.87,5173037.82",
+        "host": "localhost",
+        "dbname": "osm"
+      },
+      "id": "path",
+      "class": "roads",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "path"
+    },
+    {
+      "geometry": "unknown",
+      "extent": [
+        -124.40272293121902,
+        32.51426372716727,
+        -114.09350491538036,
+        42.08044818535066
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(SELECT * FROM high_road(!scale_denominator!, !bbox!) WHERE kind='minor_road') AS high_road",
+        "key_field": "",
+        "geometry_field": "way",
+        "extent_cache": "custom",
+        "extent": "-13848447.77,3831006.66,-12700830.87,5173037.82",
+        "host": "localhost",
+        "dbname": "osm"
+      },
+      "id": "minor_road",
+      "class": "roads",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "minor_road"
+    },
+    {
+      "geometry": "unknown",
+      "extent": [
+        -124.40272293121902,
+        32.51426372716727,
+        -114.09350491538036,
+        42.08044818535066
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(SELECT * FROM high_road(!scale_denominator!, !bbox!) WHERE kind='major_road') AS high_road",
+        "key_field": "",
+        "geometry_field": "way",
+        "extent_cache": "custom",
+        "extent": "-13848447.77,3831006.66,-12700830.87,5173037.82",
+        "host": "localhost",
+        "dbname": "osm"
+      },
+      "id": "major_road",
+      "class": "roads",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "major_road"
+    },
+    {
+      "geometry": "unknown",
+      "extent": [
+        -124.40272293121902,
+        32.51426372716727,
+        -114.09350491538036,
+        42.08044818535066
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(SELECT * FROM high_road(!scale_denominator!, !bbox!) WHERE kind='rail') AS high_road",
+        "key_field": "",
+        "geometry_field": "way",
+        "extent_cache": "custom",
+        "extent": "-13848447.77,3831006.66,-12700830.87,5173037.82",
+        "host": "localhost",
+        "dbname": "osm"
+      },
+      "id": "rail",
+      "class": "roads",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "rail"
+    },
+    {
+      "geometry": "unknown",
+      "extent": [
+        -124.40272293121902,
+        32.51426372716727,
+        -114.09350491538036,
+        42.08044818535066
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(SELECT * FROM high_road(!scale_denominator!, !bbox!) WHERE kind='highway') AS high_road",
+        "key_field": "",
+        "geometry_field": "way",
+        "extent_cache": "custom",
+        "extent": "-13848447.77,3831006.66,-12700830.87,5173037.82",
+        "host": "localhost",
+        "dbname": "osm"
+      },
+      "id": "highway",
+      "class": "roads",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "highway"
+    }
+  ],
+  "scale": 1,
+  "metatile": 2,
+  "name": "High Road",
+  "description": "",
+  "attribution": ""
+}

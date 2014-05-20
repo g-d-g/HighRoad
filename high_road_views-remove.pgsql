@@ -34,5 +34,6 @@ DROP VIEW IF EXISTS planet_osm_line_z13;
 DROP VIEW IF EXISTS planet_osm_line_z12;
 DROP VIEW IF EXISTS planet_osm_line_z11;
 DROP VIEW IF EXISTS planet_osm_line_z10;
+DROP FUNCTION IF EXISTS high_road(numeric, box3d);
 
 COMMIT;
