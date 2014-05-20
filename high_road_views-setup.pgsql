@@ -93,9 +93,9 @@ CREATE VIEW planet_osm_line_z6 AS
          osm_id,
          highway,
 
-         'no'::VARCHAR AS is_link,
-         'no'::VARCHAR AS is_tunnel,
-         'no'::VARCHAR AS is_bridge,
+         FALSE AS is_link,
+         FALSE AS is_tunnel,
+         FALSE AS is_bridge,
 
          (CASE WHEN highway = 'motorway' THEN 'highway'
                WHEN highway = 'trunk' THEN 'major_road'
@@ -113,9 +113,9 @@ CREATE VIEW planet_osm_line_z8 AS
          osm_id,
          highway,
 
-         'no'::VARCHAR AS is_link,
-         'no'::VARCHAR AS is_tunnel,
-         'no'::VARCHAR AS is_bridge,
+         FALSE AS is_link,
+         FALSE AS is_tunnel,
+         FALSE AS is_bridge,
 
          (CASE WHEN highway IN ('motorway') THEN 'highway'
                WHEN highway IN ('trunk', 'primary') THEN 'major_road'
@@ -137,11 +137,11 @@ CREATE VIEW planet_osm_line_z10 AS
                WHEN highway IN ('trunk', 'primary') THEN 'major_road'
                ELSE 'minor_road' END) AS kind,
 
-         'no'::VARCHAR AS is_link,
-         (CASE WHEN tunnel IN ('yes', 'true') THEN 'yes'
-               ELSE 'no' END) AS is_tunnel,
-         (CASE WHEN bridge IN ('yes', 'true') THEN 'yes'
-               ELSE 'no' END) AS is_bridge,
+         FALSE AS is_link,
+         (CASE WHEN tunnel IN ('yes', 'true') THEN TRUE
+               ELSE FALSE END) AS is_tunnel,
+         (CASE WHEN bridge IN ('yes', 'true') THEN TRUE
+               ELSE FALSE END) AS is_bridge,
 
          (CASE WHEN highway IN ('motorway') THEN 0
                WHEN highway IN ('trunk', 'primary') THEN 1
@@ -169,11 +169,11 @@ CREATE VIEW planet_osm_line_z11 AS
                WHEN highway IN ('trunk', 'primary') THEN 'major_road'
                ELSE 'minor_road' END) AS kind,
 
-         'no'::VARCHAR AS is_link,
-         (CASE WHEN tunnel IN ('yes', 'true') THEN 'yes'
-               ELSE 'no' END) AS is_tunnel,
-         (CASE WHEN bridge IN ('yes', 'true') THEN 'yes'
-               ELSE 'no' END) AS is_bridge,
+         FALSE AS is_link,
+         (CASE WHEN tunnel IN ('yes', 'true') THEN TRUE
+               ELSE FALSE END) AS is_tunnel,
+         (CASE WHEN bridge IN ('yes', 'true') THEN TRUE
+               ELSE FALSE END) AS is_bridge,
 
          (CASE WHEN highway IN ('motorway') THEN 0
                WHEN highway IN ('trunk', 'primary') THEN 1
@@ -201,12 +201,12 @@ CREATE VIEW planet_osm_line_z12 AS
                WHEN highway IN ('trunk', 'trunk_link', 'secondary', 'primary') THEN 'major_road'
                ELSE 'minor_road' END) AS kind,
 
-         (CASE WHEN highway LIKE '%_link' THEN 'yes'
-               ELSE 'no' END) AS is_link,
-         (CASE WHEN tunnel IN ('yes', 'true') THEN 'yes'
-               ELSE 'no' END) AS is_tunnel,
-         (CASE WHEN bridge IN ('yes', 'true') THEN 'yes'
-               ELSE 'no' END) AS is_bridge,
+         (CASE WHEN highway LIKE '%_link' THEN TRUE
+               ELSE FALSE END) AS is_link,
+         (CASE WHEN tunnel IN ('yes', 'true') THEN TRUE
+               ELSE FALSE END) AS is_tunnel,
+         (CASE WHEN bridge IN ('yes', 'true') THEN TRUE
+               ELSE FALSE END) AS is_bridge,
 
          (CASE WHEN highway IN ('motorway') THEN 0
                WHEN highway IN ('trunk', 'secondary', 'primary') THEN 1
@@ -220,7 +220,6 @@ CREATE VIEW planet_osm_line_z12 AS
       FROM planet_osm_line
       WHERE highway IS NOT NULL AND 
             highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'secondary', 'tertiary')
---         OR highway IN ('tertiary', 'residential', 'unclassified', 'road', 'unclassified')
 
   ) AS roads
 
@@ -237,12 +236,12 @@ CREATE VIEW planet_osm_line_z13 AS
                WHEN highway IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link') THEN 'major_road'
                ELSE 'minor_road' END) AS kind,
 
-         (CASE WHEN highway LIKE '%_link' THEN 'yes'
-               ELSE 'no' END) AS is_link,
-         (CASE WHEN tunnel IN ('yes', 'true') THEN 'yes'
-               ELSE 'no' END) AS is_tunnel,
-         (CASE WHEN bridge IN ('yes', 'true') THEN 'yes'
-               ELSE 'no' END) AS is_bridge,
+         (CASE WHEN highway LIKE '%_link' THEN TRUE
+               ELSE FALSE END) AS is_link,
+         (CASE WHEN tunnel IN ('yes', 'true') THEN TRUE
+               ELSE FALSE END) AS is_tunnel,
+         (CASE WHEN bridge IN ('yes', 'true') THEN TRUE
+               ELSE FALSE END) AS is_bridge,
 
          (CASE WHEN highway IN ('motorway') THEN 0
                WHEN highway IN ('motorway_link') THEN 1
@@ -257,7 +256,7 @@ CREATE VIEW planet_osm_line_z13 AS
       WHERE highway IS NOT NULL AND 
            highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 
             'primary_link', 'secondary', 'secondary_link', 'tertiary', 'residential',
-             'unclassified', 'road', 'unclassified')
+             'unclassified', 'road')
     
   ) AS roads
 
@@ -274,12 +273,12 @@ CREATE VIEW planet_osm_line_z14 AS
                WHEN highway IN ('trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link') THEN 'major_road'
                ELSE 'minor_road' END) AS kind,
 
-         (CASE WHEN highway LIKE '%_link' THEN 'yes'
-               ELSE 'no' END) AS is_link,
-         (CASE WHEN tunnel IN ('yes', 'true') THEN 'yes'
-               ELSE 'no' END) AS is_tunnel,
-         (CASE WHEN bridge IN ('yes', 'true') THEN 'yes'
-               ELSE 'no' END) AS is_bridge,
+         (CASE WHEN highway LIKE '%_link' THEN TRUE
+               ELSE FALSE END) AS is_link,
+         (CASE WHEN tunnel IN ('yes', 'true') THEN TRUE
+               ELSE FALSE END) AS is_tunnel,
+         (CASE WHEN bridge IN ('yes', 'true') THEN TRUE
+               ELSE FALSE END) AS is_bridge,
 
          -- explicit layer is the physical layering of under- and overpasses
          (CASE WHEN layer ~ E'^-?[[:digit:]]+(\.[[:digit:]]+)?$' THEN CAST (layer AS FLOAT)
@@ -324,56 +323,56 @@ ORDER BY explicit_layer ASC, implied_layer ASC, priority DESC;
 -- Create a function that takes mapniks !scale_denominator! and !bbox! tokens and chooses the correct view
 
 CREATE FUNCTION high_road(scaleDenominator numeric, bbox box3d)
-  RETURNS TABLE(way geometry, osm_id bigint, highway text, kind text, is_link text, is_tunnel text, is_bridge text) AS
+  RETURNS TABLE(way geometry, osm_id bigint, highway text, kind text, is_link boolean, is_tunnel boolean, is_bridge boolean) AS
 $$
 BEGIN
   CASE
     -- z5 - 7
     WHEN scaleDenominator <= 20000000 AND scaleDenominator > 5000000 THEN
       RETURN QUERY SELECT tbl.way, tbl.osm_id, tbl.highway::text,
-       tbl.kind::text, tbl.is_link::text, tbl.is_tunnel::text, tbl.is_bridge::text
+       tbl.kind::text, tbl.is_link::boolean, tbl.is_tunnel::boolean, tbl.is_bridge::boolean
       FROM planet_osm_line_z6 as tbl
       WHERE tbl.way && bbox;
 
     -- z8 - 9
     WHEN scaleDenominator <= 5000000 AND scaleDenominator > 750000 THEN
       RETURN QUERY SELECT tbl.way, tbl.osm_id, tbl.highway::text,
-       tbl.kind::text, tbl.is_link::text, tbl.is_tunnel::text, tbl.is_bridge::text
+       tbl.kind::text, tbl.is_link::boolean, tbl.is_tunnel::boolean, tbl.is_bridge::boolean
       FROM planet_osm_line_z8 as tbl
       WHERE tbl.way && bbox;
 
     -- z10
     WHEN scaleDenominator <= 750000 AND scaleDenominator > 400000 THEN
       RETURN QUERY SELECT tbl.way, tbl.osm_id, tbl.highway::text,
-       tbl.kind::text, tbl.is_link::text, tbl.is_tunnel::text, tbl.is_bridge::text
+       tbl.kind::text, tbl.is_link::boolean, tbl.is_tunnel::boolean, tbl.is_bridge::boolean
       FROM planet_osm_line_z10 as tbl
       WHERE tbl.way && bbox;
 
     -- z11
     WHEN scaleDenominator <= 400000 AND scaleDenominator > 200000 THEN
       RETURN QUERY SELECT tbl.way, tbl.osm_id, tbl.highway::text,
-       tbl.kind::text, tbl.is_link::text, tbl.is_tunnel::text, tbl.is_bridge::text
+       tbl.kind::text, tbl.is_link::boolean, tbl.is_tunnel::boolean, tbl.is_bridge::boolean
       FROM planet_osm_line_z11 as tbl
       WHERE tbl.way && bbox;
 
     -- z12
     WHEN scaleDenominator <= 200000 AND scaleDenominator > 100000 THEN
       RETURN QUERY SELECT tbl.way, tbl.osm_id, tbl.highway::text,
-       tbl.kind::text, tbl.is_link::text, tbl.is_tunnel::text, tbl.is_bridge::text
+       tbl.kind::text, tbl.is_link::boolean, tbl.is_tunnel::boolean, tbl.is_bridge::boolean
       FROM planet_osm_line_z12 as tbl
       WHERE tbl.way && bbox;
 
     -- z13
     WHEN scaleDenominator <= 100000 AND scaleDenominator > 50000 THEN
       RETURN QUERY SELECT tbl.way, tbl.osm_id, tbl.highway::text,
-       tbl.kind::text, tbl.is_link::text, tbl.is_tunnel::text, tbl.is_bridge::text
+       tbl.kind::text, tbl.is_link::boolean, tbl.is_tunnel::boolean, tbl.is_bridge::boolean
       FROM planet_osm_line_z13 as tbl
       WHERE tbl.way && bbox;
 
     -- z14
     WHEN scaleDenominator <= 50000 THEN
       RETURN QUERY SELECT tbl.way, tbl.osm_id, tbl.highway::text,
-       tbl.kind::text, tbl.is_link::text, tbl.is_tunnel::text, tbl.is_bridge::text
+       tbl.kind::text, tbl.is_link::boolean, tbl.is_tunnel::boolean, tbl.is_bridge::boolean
       FROM planet_osm_line_z14 as tbl
       WHERE tbl.way && bbox;
 
