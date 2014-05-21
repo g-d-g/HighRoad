@@ -151,7 +151,7 @@ CREATE VIEW planet_osm_line_z10 AS
 
       SELECT *
       FROM planet_osm_line
-      WHERE highway IS NOT NULL AND 
+      WHERE --highway IS NOT NULL AND 
             highway IN ('motorway', 'trunk', 'primary', 'secondary')
 
   ) AS roads
