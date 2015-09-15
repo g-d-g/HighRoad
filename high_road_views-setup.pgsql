@@ -262,7 +262,7 @@ CREATE VIEW planet_osm_line_z13 AS
       WHERE highway IS NOT NULL AND 
            highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 
             'primary_link', 'secondary', 'secondary_link', 'tertiary', 'residential',
-             'unclassified', 'road')
+             'track', 'unclassified', 'road')
     
   ) AS roads
 
@@ -315,6 +315,7 @@ CREATE VIEW planet_osm_line_z14 AS
             highway IN ('motorway', 'motorway_link',
                        'trunk', 'trunk_link', 'primary', 'primary_link',
                         'secondary', 'secondary_link', 'tertiary', 'tertiary_link',
+                        'track',
                         'residential', 'unclassified', 'road', 'unclassified', 'service', 'minor')
 
   ) AS roads
