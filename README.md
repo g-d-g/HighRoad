@@ -31,6 +31,7 @@ created with osm2pgsql (http://wiki.openstreetmap.org/wiki/Osm2pgsql). Using
 the command-line psql utility, you can add High Road views like this:
  
     psql -U username -f high_road_views-setup.pgsql databasename
+    psql -U username -f indexes.sql databasename
 
 The views here assume that you've created your database using the default
 settings of osm2pgsql, including the prefix of "planet_osm". If you've chosen
